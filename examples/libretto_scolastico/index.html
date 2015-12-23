@@ -9,9 +9,19 @@
     <ul id="libretto">
     </ul>
     <form id='form'>
-      <label>Materia</label> <input name='materia' type='text'>
-      <label>Voto</label> <input name='voto' type="number" min=0 max=10 value=6>
-      <label>Data</label> <input name='data' type="text"><button>Today</button>
+      <!-- nome della materia -->
+      <label for="subject_name" >Materia</label>
+      <input id="subject_name" name='materia' type='text' required>
+      <br>
+      <!-- voto-->
+      <label for="subject_grade">Voto</label>
+      <input id="subject_grade" name='voto' type="number" min=0 max=10 value=6 required>
+      <br>
+      <!-- data-->
+      <label for="subject_date">Data</label>
+      <input id="subject_date" name='data' type="date">
+      <button>Today</button>
+      <br>
       <input type='submit' value="Aggiungi">
     </form>
     <script src='app.js'></script>
