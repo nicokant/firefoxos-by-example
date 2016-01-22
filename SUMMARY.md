@@ -1,4 +1,3 @@
 # Summary
 
-* [Indice](indice.md)
 
