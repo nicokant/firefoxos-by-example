@@ -1,0 +1,5 @@
+{
+  "name": "Hello Fox",
+  "description": "say Hello to the World",
+  "launch_path": "/index.html"
+}
