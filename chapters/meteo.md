@@ -18,6 +18,16 @@ L'app permetterà premendo un pulsante di visualizzare le previoni del tempo agg
 Il servizio meteo che utilizzeremo necessita di una "chiave" detta *AppKey* per funzionare. Per prima cosa è quindi necessario registrarsi su OpenWeatherMap.org per ottenerla.  
 **NOTA**: la chiave è una sequenza di numeri e lettere.
 
+## Carta d'identità
+Il manifest della nostra app è molto semplice e ridotto all'osso:
+```
+{
+  "name": "Meteo",
+  "description": "Scarica il meteo della tua città",
+  "launch_path": "/index.html"
+}
+```
+
 ## La struttura
 All'interno del file ``index.html`` creiamo una pagina simile alle precedenti, inserendo il bottone che richiamerà le previsioni e un contenitore in cui mostrarle.
 
