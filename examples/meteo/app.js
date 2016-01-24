@@ -1,6 +1,6 @@
 var button = document.getElementById("press-me");
 var display = document.getElementById("display");
-button.addEventListener('click', prendiPrevisioni)
+button.addEventListener('click', prendiPrevisioni);
 prendiPrevisioni();
 
 function prendiPrevisioni(){
