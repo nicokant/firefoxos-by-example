@@ -8,18 +8,18 @@
 	"buffers":
 	[
 		{
-			"file": "examples/navigator/app.js",
+			"file": "chapters/meteo.md",
 			"settings":
 			{
-				"buffer_size": 509,
+				"buffer_size": 7639,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "examples/navigator/index.html",
+			"file": "chapters/libretto_scolastico.md",
 			"settings":
 			{
-				"buffer_size": 270,
+				"buffer_size": 3327,
 				"line_ending": "Unix"
 			}
 		}
@@ -57,11 +57,15 @@
 	"expanded_folders":
 	[
 		"/home/nicokant/b2g-by-examples",
+		"/home/nicokant/b2g-by-examples/chapters",
 		"/home/nicokant/b2g-by-examples/examples",
-		"/home/nicokant/b2g-by-examples/examples/navigator"
+		"/home/nicokant/b2g-by-examples/examples/libretto_scolastico"
 	],
 	"file_history":
 	[
+		"/home/nicokant/b2g-by-examples/examples/meteo/app.js",
+		"/home/nicokant/b2g-by-examples/examples/navigator/app.js",
+		"/home/nicokant/b2g-by-examples/examples/navigator/index.html",
 		"/home/nicokant/kjpdf/index.html",
 		"/home/nicokant/kjpdf/main.js",
 		"/home/nicokant/kjuicertool/Gruntfile.js"
@@ -99,63 +103,67 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "examples/navigator/app.js",
+					"file": "chapters/meteo.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 509,
+						"buffer_size": 7639,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								302,
-								302
+								7639,
+								7639
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3222.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "examples/navigator/index.html",
+					"file": "chapters/libretto_scolastico.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 270,
+						"buffer_size": 3327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								207,
-								207
+								3327,
+								3327
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1404.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

@@ -3,6 +3,7 @@ Grazie a questa app potrai ricevere le previsioni del tempo di [OpenWeatherMap.o
 
 
 ### Screenshot
+![](../assets/meteo.png)
 
 ## Info
 Difficoltà: 1.  

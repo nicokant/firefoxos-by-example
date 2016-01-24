@@ -3,16 +3,17 @@
     <title>Libretto Scolastico</title>
     <meta charset="utf-8">
     <link rel='stylesheet' href='style.css'>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
   </head>
   <body>
     <h2>Libretto Scolastico anno 2016</h2>
     <ul id="libretto">
     </ul>
     <form id='form'>
-      <label>Materia</label> <input name='materia' type='text'>
-      <label>Voto</label> <input name='voto' type="number" min=0 max=10 value=6>
-      <label>Data</label> <input name='data' type="text"><button>Today</button>
-      <input type='submit' value="Aggiungi">
+      <li><label>Materia</label> <input name='materia' type='text'></li>
+      <li><label>Voto</label> <input name='voto' type="number" min=0 max=10 value=6></li>
+      <li><label>Data</label> <input name='data' type="text"></li>
+      <li><input type='submit' value="Aggiungi"></li>
     </form>
     <script src='app.js'></script>
   </body>
