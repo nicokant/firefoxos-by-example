@@ -57,10 +57,13 @@ Quando viene premuto il pulsante **Salva** il form viene inviato (`submit`) ad u
 
 ```
 function addVoto (event) {
-        event.preventDefault(); // non spedire i dati su internet
-        event.stopPropagation(); // senza questa istruzione la pagina viene caricata di nuovo
+        // non spedire i dati su internet
+        event.preventDefault();
+         // senza questa istruzione la pagina viene caricata di nuovo
+        event.stopPropagation();
 
-        // vogliamo salvare i valori quindi dobbiamo andare a prenderli da dove sono stati inseriti
+        // vogliamo salvare i valori quindi dobbiamo 
+        // andare a prenderli da dove sono stati inseriti
         var mat = (document.querySelector("input[name=materia]")).value;
         var vot = (document.querySelector("input[name=voto]")).value;
         var dat = (document.querySelector("input[name=data]")).value;}
@@ -76,7 +79,8 @@ function addVoto (event) {
         // Voto è una scatola magica che tiene questi tre dati assieme
         var myvoto = new Voto(mat, vot, dat);
         
-        // una volta che abbiamo il contenitore con le informazioni giuste possiamo salvarle nel telefono
+        // una volta che abbiamo il contenitore con le informazioni 
+        // giuste possiamo salvarle nel telefono
         my.addVoto(myvoto);
         
 ```
