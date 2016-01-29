@@ -3,6 +3,7 @@
 La seconda applicazione tiene traccia dei voti di scuola
 
 ### Screenschot
+[](TODO: Aggiungere screenshot)
 
 ## Specifiche
 
