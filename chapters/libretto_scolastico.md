@@ -2,11 +2,31 @@
 
 La seconda applicazione tiene traccia dei voti di scuola
 
+### Screenschot
+
 ## Specifiche
 
 La pagina permette di inserire un nuovo voto, consultare quelli vecchi.
 
 È possibile aggiungere un voto tramite il form
+
+##Info
+Difficoltà: 1.  
+Tempo di sviluppo: 15 minuti.  
+Tecnologie e API utilizzate:
+* HTML Form
+* LocalStorage
+
+## Carta d'identità
+Per poter installare una app abbiamo bisogno di un manifest con le indicazioni necessarie per il sistema. Questo manifest è molto semplice e incompleto.
+
+```
+{
+  "name": "Libretto Scolastico",
+  "description": "a school marks keeper",
+  "launch_path": "/index.html"
+}
+```
 
 ## La struttura
 
@@ -57,32 +77,34 @@ Quando viene premuto il pulsante **Salva** il form viene inviato (`submit`) ad u
 
 ```
 function addVoto (event) {
-        // non spedire i dati su internet
+        /* non spedire i dati su internet */
         event.preventDefault();
-         // senza questa istruzione la pagina viene caricata di nuovo
+        /* senza questa istruzione la pagina viene caricata di nuovo */
         event.stopPropagation();
 
-        // vogliamo salvare i valori quindi dobbiamo 
-        // andare a prenderli da dove sono stati inseriti
+        /* vogliamo salvare i valori quindi dobbiamo 
+        *andare a prenderli da dove sono stati inseriti */
         var mat = (document.querySelector("input[name=materia]")).value;
         var vot = (document.querySelector("input[name=voto]")).value;
         var dat = (document.querySelector("input[name=data]")).value;}
 
-        // adesso abbiamo dato dei nomi a questi valori
-        // esempio:
-        // mat => "Matematica"
-        // vot => 10
-        // dat => qualcosa che rappresenta una data per il computer
+        /* adesso abbiamo dato dei nomi a questi valori
+        * esempio:
+        * mat => "Matematica"
+        * vot => 10
+        * dat => qualcosa che rappresenta una data per il computer */
         
-        // per salvare i dati sul telefono è utile pensare a
-        // qualcosa che li leghi assieme
-        // Voto è una scatola magica che tiene questi tre dati assieme
+        /* per salvare i dati sul telefono è utile pensare a
+        * qualcosa che li leghi assieme
+        * Voto è una scatola magica che tiene questi tre dati assieme */
         var myvoto = new Voto(mat, vot, dat);
         
-        // una volta che abbiamo il contenitore con le informazioni 
-        // giuste possiamo salvarle nel telefono
+        /* una volta che abbiamo il contenitore con le informazioni 
+        * giuste possiamo salvarle nel telefono */
         my.addVoto(myvoto);
         
 ```
 
 il resto del file è usato per definire le due scatole magiche che creano la lista dei voti e la scatola per tenere i voti
+
+[](TODO:Aggiungere il localStorage) 
