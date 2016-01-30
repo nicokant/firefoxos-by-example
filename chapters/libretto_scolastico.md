@@ -66,7 +66,7 @@ Per gestire il salvataggio è la visione dei voti inseriamo il tag `script` a fi
 
 ## La logica dell'applicazione
 
-Passiamo al comportamento dell'app che troviamo nel file `app.js'.
+Passiamo al comportamento dell'app che troviamo nel file `app.js`.
 
 Anche in questo caso spieghiamo come reagire ad un evento che coinvolge la nostra interfaccia.
 
@@ -106,6 +106,75 @@ function addVoto (event) {
         
 ```
 
-il resto del file è usato per definire le due scatole magiche che creano la lista dei voti e la scatola per tenere i voti
+il resto del file è usato per definire le due scatole magiche che creano la lista dei voti e la scatola per tenere i voti.
 
+Per definire un oggetto che mantenga nella memoria temporanea il voto ci serve qualcosa che abbia 3 attributi; la **materia**, il **voto** e la **data**.
+
+Per creare un oggetto del genere scriviamo questo codice
+
+```
+function Voto(materia, voto, data){
+  /* L'oggetto Voto ha un attributo materia associato */
+  this.materia =  materia;
+  /* L'oggetto Voto ha un attributo voto associato */
+  this.voto =  voto;
+  /* L'oggetto Voto ha un attributo data associato */
+  this.data = new Date(data);
+}
+```
+
+Se vogliamo creare un oggetto Voto con gli attributi **materia**, **voto** e **data** scriviamo
+
+```
+var a = new Voto("matematica", 10, Date.now());
+```
+
+In questo modo abbiamo creato l'oggetto e l'abbiamo associato alla variabile `a`
+
+Purtroppo avere solo `Voto` a disposizione rende la memoria temporanea, appena chiusa la pagina i voti registrati sono persi per sempe. Per rimediare creiamo un oggetto che mantenga una lista di voti e possa essere salvato in memoria in modo da poter accedere ai voti registrati anche in futuro.
+
+```
+function Libretto(){
+  /* Campi */
+  this.list = [];
+
+  /* Metodi */
+  this.addVoto = function(newVoto){
+    /* prende l'attributo lista e aggiunge in fondo alla lista il nuovo voto */
+    this.list.push(newVoto);
+    /* salviamo la lista nella memoria a lungo termine */
+    this.save();
+    /* aggiunge alla nella pagina il nuovo voto */
+    this.renderVoto(newVoto);
+  }
+
+  this.save = function(){
+    /* localstorage  è la memoria a lungo termine del browser, settare la chiave **voti**
+     * al valore di this.list permette di ritrovare i valori usando la chiave **voti**.
+     * Perché usiamo `JSON.stringify(this.list)` invece di `this.list`? Perché localstorage
+     * può memorizzare solo stringhe e quindi dobbiamo usare una trasformazione (stringify)
+     * per ottenere una stringa invece che l'oggetto lista
+     */
+    localStorage.setItem("voti", JSON.stringify(this.list));
+  }
+
+  this.renderVoto = function(voto){
+    /* crea un nuovo pezzo della pagina */
+    var contenitore = document.createElement("li");
+    /* scrive all'interno di questo contenitore la presentazione dei dati */
+    contenitore.innerHTML = "Il " + new Date(voto.data).toDateString() + " ho preso " + voto.voto + " in " + voto.materia;
+    /* aggiunge alla lista della pagina il nuovo elemento */
+    librettoWrapper.appendChild(contenitore);
+  }
+
+  if(localStorage.getItem("voti")){
+    /* se localStorage ha già in memoria la chiave **voti** assegna il contenuto di localStorage all'attributo this.list*/
+    this.list = JSON.parse(localStorage.getItem("voti"));
+    /* per ogni voto nella lista crea il contenitore e mostralo sulla pagina */
+    for(index in this.list){
+      this.renderVoto(this.list[index])
+    }
+  }
+}
+```
 [](TODO:Aggiungere il localStorage) 
