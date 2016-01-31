@@ -1,5 +1,12 @@
 {
-  "name": "Hello Fox",
-  "description": "say Hello to the World",
-  "launch_path": "/index.html"
+  "name": "Fox Navigator",
+  "description": "trova la strada",
+  "launch_path": "/index.html",
+    "type": "privileged",
+    "permissions": {
+      "geolocation" : {
+        "description": ""
+      },
+        "systemXHR": ""
+    }
 }
