@@ -4,4 +4,4 @@
 * [Hello World](chapters/hello_world.md)
 * [Libretto Scolastico](chapters/libretto_scolastico.md)
 * [Meteo](chapters/meteo.md)
-* [Locate my Photo](chapter/locatemyphoto.md)
+* [Locate my Photo](chapters/locatemyphoto.md)
