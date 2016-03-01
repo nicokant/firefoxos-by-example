@@ -9,7 +9,7 @@ Lo scopo del libro è raccogliere esempi pratici che possano servire come base p
 * Firefox OS;
 * WebIDE;
 
-Puoi trovare tutto questo nella [guida allo sviluppo veloce per Firefox OS]()
+Puoi trovare tutto questo nella [guida allo sviluppo veloce per Firefox OS][guida_su_leanpub]
 
 ### Autori
 **@nicokant** - Mozillian dal 2014, ha pubblicato diverse applicazioni nel Marketplace, si occupa di revisionare le nuove app dal 2015.
@@ -26,3 +26,6 @@ Attualmente abbiamo bisogno di autori che creino nuovi contenuti, revisori tecni
 * il codice deve essere copiabile -> niente screenshots;
 * gli articoli devono essere pratici, limitando la spiegazione agli elementi necessari per capire il funzionamento del codice;
 * ogni riferimento ad approfondimenti deve essere aggiunto con delle note a fine capitolo;
+
+
+[guida_su_leanpub]: https://leanpub.com/guidavelocesviluppofirefoxos
