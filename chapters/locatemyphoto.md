@@ -18,11 +18,13 @@ Tecnologie e API utilizzate:
 
 ## Specifiche
 
-Hai appena scattato una foto e decidi di aggiungere la sua posizione su LocateMyPhoto. Una volta aperta l'app hai una mappa e un pulsante a forma di più. Premendo il bottone compare una schermata da cui puoi scegliere o scattare una foto. Sotto di questa puoi usare la geolocazione per aggiungere la tua posizione, oppure puoi inserire l'indirizzo a cui è stata fatta. Premendo aggiungi la foto viene mostrata sulla mappa nel punto corrispondente.
+Hai appena scattato una foto e decidi di aggiungere la sua posizione su LocateMyPhoto. Una volta aperta l'app hai una mappa e un pulsante a forma di più. Premendo il bottone compare una schermata da cui puoi scegliere o scattare una foto.
+
+Sotto di questa puoi usare la geolocazione per aggiungere la tua posizione, oppure puoi inserire l'indirizzo a cui è stata fatta. Premendo aggiungi la foto viene mostrata sulla mappa nel punto corrispondente.
 
 ## Prerequisiti
 
-È necessario scaricare la libreria JavaScript [leaflet.js]("http://leafletjs.org") e inserire i file leaflet.js e leaflet.css nella vostra cartella.
+È necessario scaricare la libreria JavaScript [leaflet.js][leaflet] e inserire i file leaflet.js e leaflet.css nella vostra cartella.
 
 ## Carta d'identità
 
@@ -57,8 +59,9 @@ In questo esempio abbiamo una pagina con:
 * una mappa
 * un pulsante
 
-ti ricordo che gli elementi `<script>` e `<style>` non sono visibili all'utente.
+verranno poi aggiunti uninput per il testo ed un pulsante.
 
+Ti ricordo che gli elementi `<script>` e `<style>` non sono visibili all'utente.
 
 ```html
 <!DOCTYPE html>
@@ -97,7 +100,7 @@ ti ricordo che gli elementi `<script>` e `<style>` non sono visibili all'utente.
 
 Stavolta c'è una novità! Vedi la prima riga del file `app.js`?
 
-A `window.onload` associamo una funzione, nel browser ci sono alcuni oggetti che vengono detti globali e sono sempre disponibili anche quando non li definisci come variabili con il codice JavaScript.
+A `window.onload` associamo una funzione; nel browser ci sono alcuni oggetti che vengono detti globali e sono sempre disponibili anche quando non li definisci come variabili con il codice JavaScript.
 
 Esercizio: trova gli oggetti globali a cui puoi accedere tramite JavaScript nel browser.
 
@@ -132,20 +135,31 @@ window.onload = function(){
       
       temp.innerHTML += "<br><label>Dov'è stata scattata?</label><input placeholder='Indirizzo'><button id='here'>Qui</button><button id='getPosition'>Aggiungi alla mappa</button>";
     
+      /* questo pulsante prende l'indirizzo nell'input e cerca le
+       * coordinate geografiche, quindi piazza l'immagine nel punto giusto
+       */
       (document.querySelector('#getPosition')).onclick = function(){
         getCoords((document.querySelector('input')).value, img, map, temp);
       }
-      
+      /* Questo pulsante invece prende la posizione dell'utente e piazza
+       * l'immagine in quel punto
+       */
       var geo = document.querySelector('#here')
       geo.onclick = function(){
+        /* ecco la magia per ottenere la posizione dell'utente e mostrare quindi la mappa */
         navigator.geolocation.getCurrentPosition(function(pos){
+          /* creiamo un popup che verrà aggiunto alla mappa
+           * nella posizione (pos.coords.longitude, pos.coords.latitude)
+           * che contiene l'immagine scattata grazie ad un tag `img`
+           */
+          var coordinates = [pos.coords.longitude, pos.coords.latitude] 
           var popup = L.popup()
-            .setLatLng([pos.coords.latitude,
-          pos.coords.longitude])
+            .setLatLng(coordinates)
             .setContent("<img src='"+ img.src +"'><br>scattata qui")
             .openOn(map);
-          map.setView([pos.coords.latitude,
-          pos.coords.longitude])
+          /* centra la mappa dove abbiamo piazzato la foto */
+          map.setView(coordinates);
+          /* rimuove l'elemento temporaneo dove mostravamo la foto */
           document.body.removeChild(temp);
         });
       }
@@ -155,17 +169,26 @@ window.onload = function(){
 }
 
 function getCoords(addr, img, map, temp){
+    /* ti ricordi cosa è XMLHttpRequest? */
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://nominatim.openstreetmap.org/search/'+addr+'?format=json');
-   xhr.onload = function(){
+    /* facciamo la richiesta all'url 
+     * 'http://nominatim.openstreetmap.org/search/'+addr+'?format=json'
+     * e passiamo il nostro indirizzo tramite la variabile addr
+     */
+    xhr.open('GET', 'http://nominatim.openstreetmap.org/search/'+addr+'?format=json', 1);
+    
+    /* ti ricordi cosa vuol dire programmazione asincrona? */
+    xhr.onload = function(){
+     /* prendiamo la risposta e mettiamola in un JSON */
      var json = JSON.parse(xhr.responseText)[0];
+     
+     /* creiamo un popup nella mappa e mettiamoci la foto */
+     var coordinates = [json.lat, json.lon];
      var popup = L.popup()
-            .setLatLng([json.lat,
-          json.lon])
+            .setLatLng(coordinates)
             .setContent("<img src='"+ img.src +"'><br>scattata qui")
             .openOn(map);
-          map.setView([json.lat,
-          json.lon])
+          map.setView(coordinates)
           document.body.removeChild(temp);
    }
    xhr.send();
@@ -201,7 +224,7 @@ activity.onsuccess = function () {
 }
 ```
 
-Possiamo quindi creare una immagine dal *blob* e mostrarla inserendola nel DOM.
+Possiamo quindi creare una immagine dal *blob* che ci viene passato e mostrarla inserendola nel DOM.
 
 ```js
 var img = document.createElement('img');
@@ -242,8 +265,7 @@ position_button.onclick = function(){
 
 Questo perché nel primo esempio l'oggetto ritornato da `document.querySelector('#getPosition')` viene usato immediatamente senza mantenerlo nella variabile `position_button`.
 
-Quindi quando clicciamo il nuovo pulsante viene eseguita la funzione `getCoords`.
-
+Abbiamo create due pulsanti; uno prende un input dall'utente e cerca le coordinate a partire da quello, il secondo invece prende le coordinate dal dispositivo.
 
 ## La Grafica
 
@@ -251,3 +273,5 @@ Qualche dritta su come rendere bellissima l'applicazione
 
 ## Esercizi
 Qualche suggerimento per ampliare e migliorare l'app realizzata
+
+[leaflet]: http://leafletjs.org
