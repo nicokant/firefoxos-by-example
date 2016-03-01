@@ -21,7 +21,7 @@ Tecnologie e API utilizzate:
 ## Carta d'identità
 Per poter installare una app abbiamo bisogno di un manifest con le indicazioni necessarie per il sistema. Questo manifest è molto semplice e incompleto.
 
-```
+```js
 {
   "name": "Libretto Scolastico",
   "description": "a school marks keeper",
@@ -33,7 +33,7 @@ Per poter installare una app abbiamo bisogno di un manifest con le indicazioni n
 
 La struttura dell'applicazione è contenuta nel file ```index.html```, usando i tag HTML inseriamo i contenuti di cui hai bisogno.
 
-```
+```html
 <html>
   <head>
     <title>Libretto scolastico</title>
@@ -70,13 +70,13 @@ Passiamo al comportamento dell'app che troviamo nel file `app.js`.
 
 Anche in questo caso spieghiamo come reagire ad un evento che coinvolge la nostra interfaccia.
 
-```
+```js
 for.addEventListener("submit", addVoto)
 ```
 
 Quando viene premuto il pulsante **Salva** il form viene inviato (`submit`) ad un indirizzo preciso su internet. Noi però non l'abbiamo specificato perché intercettiamo questo evento e fermiamo l'invio per accedere ai dati.
 
-```
+```js
 function addVoto (event) {
         /* non spedire i dati su internet */
         event.preventDefault();
@@ -112,7 +112,7 @@ Per definire un oggetto che mantenga nella memoria temporanea il voto ci serve q
 
 Per creare un oggetto del genere scriviamo questo codice
 
-```
+```js
 function Voto(materia, voto, data){
   /* L'oggetto Voto ha un attributo materia associato */
   this.materia =  materia;
@@ -125,7 +125,7 @@ function Voto(materia, voto, data){
 
 Se vogliamo creare un oggetto Voto con gli attributi **materia**, **voto** e **data** scriviamo
 
-```
+```js
 var a = new Voto("matematica", 10, Date.now());
 ```
 
@@ -133,7 +133,7 @@ In questo modo abbiamo creato l'oggetto e l'abbiamo associato alla variabile `a`
 
 Purtroppo avere solo `Voto` a disposizione rende la memoria temporanea, appena chiusa la pagina i voti registrati sono persi per sempe. Per rimediare creiamo un oggetto che mantenga una lista di voti e possa essere salvato in memoria in modo da poter accedere ai voti registrati anche in futuro.
 
-```
+```js
 function Libretto(){
   /* Campi */
   this.list = [];
