@@ -6,20 +6,31 @@ window.onload = function () {
 
   var button = document.getElementById('getPhoto');
   button.onchange = function (e) {
+    $('#modal').modal('show');
     var file = e.target.files[0];
     var reader = new FileReader();
 
     reader.onload = function () {
       var temp = document.createElement('div');
-      document.body.appendChild(temp);
-      var img = document.createElement('img');
-      img.src = this.result;
-      temp.appendChild(img);
+      $('#modal-content').empty();
+      document.getElementById('modal-content').appendChild(temp);
+      temp.innerHTML = "<div class='container-fluid'><div class='row-fluid'>" +
+        "<div class='col-md-6 col-lg-6'><img src='"+this.result+"'></div>" +
+        "<div class='col-md-6 col-lg-6'>" +
+          "<div class='input-group'>" +
+          "<label>Dov'è stata scattata?</label><br />" +
+          "<div class='btn-group'><button class='btn' id='here'>Qui</button>" +
+          "<button class='btn' id='getPosition'>Aggiungi alla mappa</button></div><br />" +
+          "<input id='addr' class='form-control' placeholder='Indirizzo'>" +
+        "</div></div>" +
+      "</div></div>";
 
-      temp.innerHTML += "<br><label>Dov'è stata scattata?</label><input id='addr' placeholder='Indirizzo'><button id='here'>Qui</button><button id='getPosition'>Aggiungi alla mappa</button>";
+      var img = new Image();
+      img.src = this.result;
 
       (document.querySelector('#getPosition')).onclick = function () {
         getCoords((document.querySelector('#addr')).value, img, map, temp);
+        return;
       };
 
       var geo = document.querySelector('#here');
@@ -36,7 +47,7 @@ window.onload = function () {
             [pos.coords.latitude,
             pos.coords.longitude,
           ]);
-          document.body.removeChild(temp);
+          $('#modal').modal('hide');
         });
       };
 
@@ -48,6 +59,7 @@ window.onload = function () {
 
 function getCoords(addr, img, map, temp) {
   var xhr = new XMLHttpRequest();
+  console.log(addr)
   addr = encodeURIComponent(addr);
   xhr.open('GET', 'http://nominatim.openstreetmap.org/search/' + addr + '?format=json');
   xhr.onload = function () {
@@ -63,7 +75,7 @@ function getCoords(addr, img, map, temp) {
       json.lat,
       json.lon,
     ]);
-    document.body.removeChild(temp);
+    $('#modal').modal('hide');
   };
 
   xhr.send();

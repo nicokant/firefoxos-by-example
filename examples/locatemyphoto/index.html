@@ -6,23 +6,44 @@
     <link rel='stylesheet' href='leaflet.css'>
     <script src='leaflet.js'></script>
     <title>Locate my photo</title>
+
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <style>
-      
+
+      #modal-content {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
       img{
         max-width: 300px;
+        max-height: 200px;
       }
-      
+
       .leaflet-map-pane img{
         height: 100px;
       }
-      
-      #map { height: 180px; }
+
+      #map { height: 300px; }
     </style>
   </head>
 
-  <body>
+  <body class= 'container-fluid'>
     <div id="map"></div>
-    <input type='file' id='getPhoto' placeholder='Select Image'>
+    <br />
+    <input type='file' class='btn btn-default' id='getPhoto'>
+
+    <div id='modal' class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg">
+        <div id='modal-content' class="modal-content">
+        </div>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>
