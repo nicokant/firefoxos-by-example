@@ -4,17 +4,67 @@
     <meta charset="utf-8">
     <link rel='stylesheet' href='style.css'>
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h2>Libretto Scolastico anno 2016</h2>
-    <ul id="libretto">
-    </ul>
-    <form id='form'>
-      <li><label>Materia</label> <input name='materia' type='text'></li>
-      <li><label>Voto</label> <input name='voto' type="number" min=0 max=10 value=6></li>
-      <li><label>Data</label> <input name='data' type="text"></li>
-      <li><input type='submit' value="Aggiungi"></li>
-    </form>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            Libretto Scolastico
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-toggle="modal" data-target="#modal"><span class='glyphicon glyphicon-plus'></span> Aggiungi</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <ul id="libretto" class='list-group'>
+      </ul>
+    </div>
+
+    <div id='modal' class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg">
+        <div id='modal-content' class="modal-content">
+          <div class="modal-header">
+            <h4>Aggiungi Voto</h4>
+          </div>
+          <div class='modal-body container-fluid'>
+            <form id='form'>
+            <div class="form-group">
+              <label>Materia</label>
+              <input name='materia' type='text' class='form-control'>
+            </div>
+            <div class="form-group">
+              <label>Voto</label>
+              <input name='voto' type="number" min=0 max=10 value=6 class='form-control'>
+            </div>
+            <div class="form-group">
+              <label>Data</label>
+              <input name='data' type="text" class='form-control'>
+            </div>
+            </form>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-default">Chiudi</button>
+            <button id='addVoto' type="button" class="btn btn-primary">Aggiungi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src='app.js'></script>
   </body>
 </html>
